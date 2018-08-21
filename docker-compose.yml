@@ -1,0 +1,19 @@
+version: '2'
+services:
+  db_mysql:
+    image: mysql
+    container_name: docker_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: test123
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: docker_phpmyadmin
+    environment:
+      PMA_ARBITRARY: 0
+    external_links:
+    - db_mysql:db
+    ports:
+    - 9080:80
+    volumes:
+    - /sessions
